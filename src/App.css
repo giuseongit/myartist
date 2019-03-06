@@ -1,3 +1,13 @@
+@import '~antd/dist/antd.css';
+
+body {
+  background: #222121
+}
+
+#root {
+  background: #616161
+}
+
 .App {
   text-align: center;
 }
