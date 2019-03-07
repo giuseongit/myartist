@@ -4,7 +4,7 @@ import { Provider, connect } from 'react-redux';
 
 import LandingContainer from './containers/landingContainer';
 import DashboardContainer from './containers/dashboardContainer';
-import { reducers, searchForOauthInfos } from './utils/store';
+import { reducer, searchForOauthInfos } from './utils/store';
 
 import './App.css';
 
@@ -29,7 +29,7 @@ if(redux_devtools){
 }
 
 const store = createStore(
-  reducers,
+  reducer,
   middlewares
 );
 
@@ -58,7 +58,7 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    logged: state.logged
+    logged: state.auth.logged
   };
 }
 

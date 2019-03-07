@@ -3,12 +3,13 @@ import Dashboard from '../components/dashboard';
 
 const mapStateToProps = state => {
   return {
-    name: state.name
+    name: state.auth.name
   };
 }
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+  };
 }
 
 const DashboardContainer = connect(

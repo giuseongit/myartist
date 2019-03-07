@@ -6,9 +6,10 @@ const isLoading = ( token, name ) => {
 }
 
 const mapStateToProps = state => {
+  const { token, name, error } = state.auth;
   return {
-    error: state.error,
-    loading: isLoading(state.token, state.name)
+    error,
+    loading: isLoading(token, name)
   };
 }
 

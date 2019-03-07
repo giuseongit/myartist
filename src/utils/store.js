@@ -1,10 +1,11 @@
-import { combineReducers } from 'redux'; // eslint-disable-line no-unused-vars
-import { spotifyMe } from './api';
+import { spotifyMe, sporitfySearchArtists } from './api';
+import { combineReducers } from 'redux';
 
 // Action labels
 const TOKEN_DETECTED = 'TOKEN_DETECTED';
 const TOKEN_ERROR = 'TOKEN_ERROR';
 const LOGIN_DATA = 'LOGIN_DATA';
+const SEARCH_END = 'SEARCH_END';
 
 const tokenDetected = (token) => {
   return {
@@ -28,6 +29,13 @@ const loginData = (username, id) => {
   };
 }
 
+const searchEnd = (artists) => {
+  return {
+    type: SEARCH_END,
+    artists
+  };
+}
+
 // Action creators
 export const searchForOauthInfos = (dispatch) => {
   const thisUrl = new URL(window.location.href);
@@ -36,10 +44,11 @@ export const searchForOauthInfos = (dispatch) => {
   if (token !== null) {
     dispatch(tokenDetected(token[1]));
 
-    spotifyMe(token[1], data => {
+    spotifyMe(token[1])
+    .then(data => {
       const { display_name, id } = data;
-      dispatch(loginData(display_name, id))
-    }, err => {
+      dispatch(loginData(display_name, id));
+    }).catch(err => {
       console.log(err);
     });
 
@@ -48,8 +57,22 @@ export const searchForOauthInfos = (dispatch) => {
   }
 }
 
+export const searchArtist = (dispatch, token, query) => {
+  sporitfySearchArtists(token, query)
+  .then(data => {
+    const { items } = data.artists;
+    dispatch(searchEnd(items));
+  }).catch(err => {
+    console.log(err);
+  });
+}
+
+export const saveToFav = (dispatch, artist) => {
+
+}
+
 // State init
-const initialState = {
+const auth = {
   error: false,
   logged: false,
   oauth: null,
@@ -57,8 +80,14 @@ const initialState = {
   name: null,
 }
 
+const artists = {
+  cache: [],
+  favs: []
+}
+
+
 // Reducers
-const authReducers = (state = initialState, action) => {
+const authReducer = (state = auth, action) => {
   switch (action.type) {
     case TOKEN_DETECTED:
       return {
@@ -82,8 +111,19 @@ const authReducers = (state = initialState, action) => {
   }
 }
 
-// export const reducers = combineReducers({
-//   authReducers
-// });
+const artistsReducer = (state = artists, action) => {
+  switch (action.type){
+    case SEARCH_END:
+      return {
+        ...state,
+        cache: action.artists
+      }
+    default:
+      return state;
+  }
+}
 
-export const reducers = authReducers;
+export const reducer = combineReducers({
+  auth: authReducer,
+  artists: artistsReducer
+});
