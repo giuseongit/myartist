@@ -1,7 +1,7 @@
 @import '~antd/dist/antd.css';
 
-body {
-  background: #222121
+body, header.ant-layout-header, .myartist-menu, main {
+  background: #222121;
 }
 
 .myartist-menu {
@@ -20,19 +20,40 @@ body {
   border-color: #1DB954;
 }
 
-.myartist-menu li{
-  color: #fff;
+.myartist-menu li,
+.title,
+.modal-row span{
+  color: #FFFFFF !important;
+  text-align: center;
+}
+
+.ant-list-item-meta-description,
+.ant-list-split .ant-list-item{
+  color: #D3D3D3;
 }
 
 .ant-typography a,
 .ant-typography a:active,
-.ant-typography a:hover {
+.ant-typography a:hover,
+.myartist-check-mark {
   color: #1DB954;
 }
 
+.ant-modal-centered .ant-modal{
+  text-align: center;
+}
+
 .ant-btn-primary,
-.ant-spin-dot i,
 .ant-btn-primary:hover {
+  border-color: #FFFFFF;
+  background-color: #FFFFFF;
+  border-radius: 45px;
+  color: black;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.ant-spin-dot i{
   border-color: #1DB954;
   background-color: #1DB954;
 }
@@ -50,7 +71,10 @@ body {
 
 .ant-empty-description,
 .ant-list-item-meta-title,
-.ant-list-item-meta-description,
 .myartist-action-icon {
   color: #fff;
+}
+
+.myartist-check-mark:hover {
+  cursor: default;
 }

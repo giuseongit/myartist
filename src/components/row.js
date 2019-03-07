@@ -17,8 +17,20 @@ class ListRow extends PureComponent {
       ? this.props.artist.images[2].url
       : "";
 
+    const check = (
+      <Icon
+        className="myartist-check-mark"
+        type="check"
+      />
+    );
+
+    let actions = [this.buildTriggerAction()];
+    if(this.props.isFavourite){
+      actions = [check, ...actions];
+    }
+
     return (
-      <List.Item actions={[this.buildTriggerAction()]}>
+      <List.Item actions={actions}>
         <List.Item.Meta
           avatar={<Avatar src={imageUrl} />}
           title={this.props.artist.name}
@@ -29,10 +41,14 @@ class ListRow extends PureComponent {
   }
 
   buildTriggerAction() {
+    let callback;
+    let iconType;
     if (!this.props.isFavourite) {
-      return (
-        <Icon type="plus-circle" onClick={this.addToFavourites} />
-      );
+      callback = this.props.addToFavourites;
+      iconType = "plus-circle";
+    } else {
+      callback = this.props.removeFromFavourites;
+      iconType = "minus-circle";
     }
 
     return (
@@ -42,7 +58,7 @@ class ListRow extends PureComponent {
         onClick={callback}
         type={iconType}
       />
-    )
+    );
   }
 
   triggerFavourites(action) {

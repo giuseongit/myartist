@@ -1,4 +1,4 @@
-import { List } from 'antd';
+import { Col, List, Row } from 'antd';
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import ListRow from "./row";
