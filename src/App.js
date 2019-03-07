@@ -18,12 +18,22 @@ const logger = store => next => action => {
   return result;
 }
 
+const redux_devtools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
+
+let middlewares = null;
+
+if(redux_devtools){
+  middlewares = compose(
+    applyMiddleware(logger),
+    redux_devtools
+  )
+} else {
+  middlewares = applyMiddleware(logger)
+}
+
 const store = createStore(
   reducers,
-  compose(
-    applyMiddleware(logger),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  )
+  middlewares
 );
 
 searchForOauthInfos(store.dispatch);

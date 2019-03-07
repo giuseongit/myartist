@@ -6,19 +6,28 @@ export const API_ME = API_URL + 'me';
 export const API_SEARCH = API_URL + 'search';
 
 const spotifyApiCall = (url, method, token, payload, success, fail) => {
-  fetch(url, {
+  let options = {
     method,
     headers: {
       'Authorization': 'Bearer ' + token
-    },
-    body: payload
-  }).then(response => response.json())
+    }
+  };
+
+  if(method === 'POST'){
+    options.body = payload;
+  }else if(method === 'GET'){
+    const queryobj = new URLSearchParams(payload)
+    const querystr = queryobj.toString()
+    url += '?' + querystr
+  }
+  
+  fetch(url, options).then(response => response.json())
   .then(success)
   .catch(fail);
 }
 
 export const spotifyMe = (token, success, fail) => {
-  spotifyApiCall(API_ME, 'GET', token, {}, success, fail);
+  spotifyApiCall(API_ME, 'GET', token, null, success, fail);
 }
 
 export const sporitfySearchArtists = (token, query, success, fail) => {
@@ -26,5 +35,5 @@ export const sporitfySearchArtists = (token, query, success, fail) => {
     q: query,
     type: 'artist'
   };
-  spotifyApiCall(API_ME, 'GET', token, new URLSearchParams(req_body), success, fail);
+  spotifyApiCall(API_ME, 'GET', token, req_body, success, fail);
 }

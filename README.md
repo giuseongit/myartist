@@ -7,3 +7,15 @@ A simple frontend which uses the [spotify api](https://developer.spotify.com/doc
 * Save your favorite artist in a list
 * List your favorite artists in a nicely formatted table.
 * Delete an artist from your favorite list
+
+# Instructions
+
+Start the dev server:
+```
+$ yarn dev
+```
+
+Start the production server:
+```
+$ yarn build && serve -s build
+```
