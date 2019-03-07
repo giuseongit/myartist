@@ -5,6 +5,7 @@
   "dependencies": {
     "antd": "^3.14.1",
     "lodash.debounce": "^4.0.8",
+    "prettier": "^1.16.4",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "react-redux": "^6.0.1",
