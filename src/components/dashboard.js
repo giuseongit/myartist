@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Menu, Row, Col, Typography, Spin, Alert, Layout, Tabs } from 'antd';
+import FavsContainer from "../containers/favsContainer";
 import SearchContainer from "../containers/searchContainer";
 const { Title, Text } = Typography;
 const { Header, Content, Sider } = Layout;
@@ -45,7 +46,9 @@ class Dashboard extends Component{
             <TabPane tab="Tab 1" key="1">
               <SearchContainer />
             </TabPane>
-            <TabPane tab="Tab 2" key="2">Tab 2</TabPane>
+            <TabPane tab="Tab 2" key="2">
+              <FavsContainer />
+            </TabPane>
           </Tabs>
         </Content>
       </Layout>
