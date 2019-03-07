@@ -6,6 +6,7 @@ const TOKEN_DETECTED = 'TOKEN_DETECTED';
 const TOKEN_ERROR = 'TOKEN_ERROR';
 const LOGIN_DATA = 'LOGIN_DATA';
 const SEARCH_END = 'SEARCH_END';
+const EMPTY_CACHE = 'EMPTY_CACHE';
 const SAVE_TO_FAV = 'SAVE_TO_FAV';
 const DELETE_FROM_FAV = 'DELETE_FROM_FAV';
 
@@ -52,6 +53,12 @@ const deleteFromFav = (artist) => {
  };
 }
 
+export const emptyCache = () => {
+  return {
+    type: EMPTY_CACHE
+  };
+}
+
 // Action creators
 export const searchForOauthInfos = (dispatch) => {
   const thisUrl = new URL(window.location.href);
@@ -74,6 +81,10 @@ export const searchForOauthInfos = (dispatch) => {
 }
 
 export const searchArtist = (dispatch, token, query) => {
+  dispatch(emptyCache());
+  if(query === ''){
+    return
+  }
   sporitfySearchArtists(token, query)
   .then(data => {
     const { items } = data.artists;
@@ -143,6 +154,11 @@ const artistsReducer = (state = artists, action) => {
       return {
         ...state,
         cache: action.artists
+      }
+    case EMPTY_CACHE:
+      return {
+        ...state,
+        cache: []
       }
     case SAVE_TO_FAV:
       return {

@@ -37,7 +37,7 @@ export const spotifyMe = (token) => {
 
 export const sporitfySearchArtists = (token, query) => {
   const req_body = {
-    q: query,
+    q: query + '*',
     type: 'artist'
   };
   return spotifyApiCall(API_SEARCH, 'GET', token, req_body);
