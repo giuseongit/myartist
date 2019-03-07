@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux'; // eslint-disable-line no-unused-vars
 import { spotifyMe } from './api';
 
 // Action labels

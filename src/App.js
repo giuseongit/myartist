@@ -3,13 +3,10 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider, connect } from 'react-redux';
 
 import LandingContainer from './containers/landingContainer';
+import DashboardContainer from './containers/dashboardContainer';
 import { reducers, searchForOauthInfos } from './utils/store';
 
 import './App.css';
-
-import {
-  Form
-} from 'antd';
 
 const logger = store => next => action => {
   console.log('dispatching', action);
@@ -39,6 +36,7 @@ const store = createStore(
 searchForOauthInfos(store.dispatch);
 
 // DEBUG PURPOSE ONLY
+// eslint-disable-next-line no-unused-vars
 const unsub = store.subscribe(() => {
   console.log(store.getState());
 });
@@ -52,9 +50,7 @@ class App extends Component {
       );
     }else{
       return (
-        <div>
-          It works!
-        </div>
+        <DashboardContainer />
       );
     }
   }

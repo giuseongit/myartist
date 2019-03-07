@@ -51,7 +51,7 @@ class LandingPage extends Component{
             </Text>
             { errorMsg }
           </Col>
-          <Col offset={18}>
+          <Col span={4}>
             { action }
           </Col>
         </Row>
