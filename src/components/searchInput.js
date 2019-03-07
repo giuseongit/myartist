@@ -17,12 +17,13 @@ class SearchInput extends PureComponent {
         id='input-search'
         placeholder="Search your favourite artists"
         onChange={this.onSearch}
+        ref={node => this.artistInput = node}
       />
     );
   }
 
-  onSearch(value) {
-    this.props.onSearch(this.props.token, value);
+  onSearch() {
+    this.props.onSearch(this.props.token, this.artistInput.state.value);
   }
 
 }
