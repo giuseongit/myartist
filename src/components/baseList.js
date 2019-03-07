@@ -27,11 +27,15 @@ class BaseList extends PureComponent {
     return (
       <ListRow
         artist={item}
-        isFavourite={Array.indexOf(this.props.favs, item.id)}
+        isFavourite={this.isFav(item)}
         onSelect={this.props.onSelect}
       />
     );
 
+  }
+
+  isFav(item) {
+    return this.props.favs.filter((fav) => fav.id === item.id).lenth === 1;
   }
 
 }
@@ -39,7 +43,7 @@ class BaseList extends PureComponent {
 BaseList.propTypes = {
   favs: PropTypes.array.isRequired,
   onSelect: PropTypes.func.isRequired,
-  results: PropTypes.array.isRequired,
+  list: PropTypes.array.isRequired,
 }
 
 export default BaseList;

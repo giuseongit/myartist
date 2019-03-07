@@ -25,7 +25,7 @@ class SearchSection extends PureComponent {
             <BaseList
               favs={this.props.favs}
               onSelect={this.props.onSelect}
-              results={this.props.results}
+              list={this.props.results}
             />
           </Col>
         </Row>

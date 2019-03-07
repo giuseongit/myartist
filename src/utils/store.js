@@ -6,6 +6,8 @@ const TOKEN_DETECTED = 'TOKEN_DETECTED';
 const TOKEN_ERROR = 'TOKEN_ERROR';
 const LOGIN_DATA = 'LOGIN_DATA';
 const SEARCH_END = 'SEARCH_END';
+const SAVE_TO_FAV = 'SAVE_TO_FAV';
+const DELETE_FROM_FAV = 'DELETE_FROM_FAV';
 
 const tokenDetected = (token) => {
   return {
@@ -34,6 +36,20 @@ const searchEnd = (artists) => {
     type: SEARCH_END,
     artists
   };
+}
+
+const saveToFav = (artist) => {
+  return {
+    type: SAVE_TO_FAV,
+    artist
+  };
+}
+
+const deleteFromFav = (artist) => {
+ return {
+   type: DELETE_FROM_FAV,
+   artist
+ };
 }
 
 // Action creators
@@ -67,9 +83,17 @@ export const searchArtist = (dispatch, token, query) => {
   });
 }
 
-export const saveToFav = (dispatch, artist) => {
-
+export const handleArtist = (dispatch, action, artist) => {
+  switch(action){
+    case 'add':
+      dispatch(saveToFav(artist));
+    case 'remove':
+      dispatch(deleteFromFav(artist));
+    default:
+      return;
+  }
 }
+
 
 // State init
 const auth = {
@@ -117,6 +141,16 @@ const artistsReducer = (state = artists, action) => {
       return {
         ...state,
         cache: action.artists
+      }
+    case SAVE_TO_FAV:
+      return {
+        ...state,
+        favs: [...state.favs, action.artist]
+      }
+    case DELETE_FROM_FAV:
+      return {
+        ...state,
+        favs: state.favs.filter((fav) => fav.id !== action.artist.id)
       }
     default:
       return state;

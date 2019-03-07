@@ -13,20 +13,23 @@ class ListRow extends PureComponent {
   }
 
   render() {
+    const imageUrl = this.props.artist.images[2]
+      ? this.props.artist.images[2].url
+      : "";
 
     return (
       <List.Item actions={[this.buildTriggerAction()]}>
         <List.Item.Meta
-          avatar={<Avatar src={this.props.item.images[3] /* TODO fix image item selection*/} />}
-          title={this.props.item.name}
-          description={`${this.props.item.followers.total} followers`}
+          avatar={<Avatar src={imageUrl} />}
+          title={this.props.artist.name}
+          description={`${this.props.artist.followers.total} followers`}
         />
       </List.Item>
     );
   }
 
   buildTriggerAction() {
-    if (this.props.isFavourite) {
+    if (!this.props.isFavourite) {
       return (
         <Icon type="plus-circle" onClick={this.addToFavourites} />
       );
@@ -38,7 +41,7 @@ class ListRow extends PureComponent {
   }
 
   triggerFavourites(action) {
-    this.props.onSelect(action, this.props.item.id);
+    this.props.onSelect(action, this.props.artist);
   }
 
 }
