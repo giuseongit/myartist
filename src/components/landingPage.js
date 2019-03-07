@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Row, Col, Typography, Spin, Alert, Layout, message } from 'antd';
+import { Button, Row, Col, Typography, Spin, Layout, message } from 'antd';
 import { AUTH_URL } from '../utils/api';
 const { Title, Text } = Typography;
 const { Content } = Layout;

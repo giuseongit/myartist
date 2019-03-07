@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Menu, Typography, Layout, Tabs } from 'antd';
+import { Menu, Layout, Tabs } from 'antd';
 import FavsContainer from "../containers/favsContainer";
 import SearchContainer from "../containers/searchContainer";
 const { Header, Content } = Layout;
@@ -25,7 +25,7 @@ class Dashboard extends PureComponent{
   }
 
   render() {
-    const { activetab, name } = this.state;
+    const { activetab} = this.state;
     return (
       <Layout>
         <Header>

@@ -1,5 +1,3 @@
-import { reject } from "q";
-
 export const REDIRECT_URI = window.location.href.slice(0,-1); // Remove last character (/) for using as redirect URI with spotify
 export const CLIENT_ID = '1ae47e4ba78d435ca3a3a2fd48f4312d';
 export const AUTH_URL = 'https://accounts.spotify.com/authorize?response_type=token&client_id=' + CLIENT_ID + '&redirect_uri=' + REDIRECT_URI;

@@ -44,10 +44,10 @@ class ListRow extends PureComponent {
     let callback;
     let iconType;
     if (!this.props.isFavourite) {
-      callback = this.props.addToFavourites;
+      callback = this.addToFavourites;
       iconType = "plus-circle";
     } else {
-      callback = this.props.removeFromFavourites;
+      callback = this.removeFromFavourites;
       iconType = "minus-circle";
     }
 
