@@ -1,28 +1,5 @@
-import {
-  combineReducers
-} from 'redux'
-
-export const REDIRECT_URI = 'http://localhost:3000';
-export const CLIENT_ID = '1ae47e4ba78d435ca3a3a2fd48f4312d';
-export const AUTH_URL = 'https://accounts.spotify.com/authorize?response_type=token&client_id=' + CLIENT_ID + '&redirect_uri=' + REDIRECT_URI;
-export const API_URL = 'https://api.spotify.com/v1/';
-export const API_ME = API_URL + 'me';
-
-const spotifyApiCall = (url, method, token, payload, success, fail) => {
-  fetch(url, {
-    method,
-    headers: {
-      'Authorization': 'Bearer ' + token
-    },
-    body: payload
-  }).then(response => response.json())
-  .then(success)
-  .catch(fail);
-}
-
-const spotifyMe = (token, success, fail) => {
-  spotifyApiCall(API_ME, 'GET', token, {}, success, fail)
-}
+import { combineReducers } from 'redux';
+import { spotifyMe } from './api';
 
 // Action labels
 const TOKEN_DETECTED = 'TOKEN_DETECTED';
@@ -33,14 +10,14 @@ const tokenDetected = (token) => {
   return {
     type: TOKEN_DETECTED,
     token
-  }
+  };
 }
 
 const tokenError = (error) => {
   return {
     type: TOKEN_ERROR,
     error
-  }
+  };
 }
 
 const loginData = (username, id) => {
@@ -48,13 +25,13 @@ const loginData = (username, id) => {
     type: LOGIN_DATA,
     username,
     id
-  }
+  };
 }
 
 // Action creators
 export const searchForOauthInfos = (dispatch) => {
   const thisUrl = new URL(window.location.href);
-  const token = thisUrl.href.match(/\#(?:access_token)\=([\S\s]*?)\&/);
+  const token = thisUrl.href.match(/\#(?:access_token)\=([\S\s]*?)\&/); // eslint-disable-line no-useless-escape
   const error = thisUrl.searchParams.get("error");
   if (token !== null) {
     dispatch(tokenDetected(token[1]));
@@ -92,14 +69,14 @@ const authReducers = (state = initialState, action) => {
       return {
         ...state,
         error: true
-      }
+      };
     case LOGIN_DATA:
       const { username, id } = action;
       return {
         ...state,
         logged: true,
         name: username + '(' + id +')'
-      }
+      };
     default:
       return state;
   }

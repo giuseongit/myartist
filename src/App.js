@@ -1,23 +1,22 @@
 import React, { Component } from 'react';
-import './App.css';
+import { createStore, applyMiddleware, compose } from 'redux';
+import { Provider, connect } from 'react-redux';
 
 import LandingContainer from './containers/landingContainer';
-import { createStore, applyMiddleware, compose } from 'redux';
-import { reducers, searchForOauthInfos } from './redux/store';
+import { reducers, searchForOauthInfos } from './utils/store';
 
-import { Provider, connect } from 'react-redux';
+import './App.css';
 
 import {
   Form
 } from 'antd';
 
 const logger = store => next => action => {
-  console.log('dispatching', action)
-  let result = next(action)
-  console.log('next state', store.getState())
-  return result
+  console.log('dispatching', action);
+  let result = next(action);
+  console.log('next state', store.getState());
+  return result;
 }
-
 
 const store = createStore(
   reducers,
@@ -31,20 +30,14 @@ searchForOauthInfos(store.dispatch);
 
 // DEBUG PURPOSE ONLY
 const unsub = store.subscribe(() => {
-  console.log(store.getState())
+  console.log(store.getState());
 });
 
 class App extends Component {
-  constructor(props){
-    super(props);
-  }
-
   render() {
     const logged = this.props.logged;
-    let content;
     if (!logged) {
       return (
-        // <LoginModal />
         <LandingContainer />
       );
     }else{
@@ -54,14 +47,13 @@ class App extends Component {
         </div>
       );
     }
-
   }
 }
 
 const mapStateToProps = state => {
   return {
     logged: state.logged
-  }
+  };
 }
 
 const mapDispatchToProps = dispatch => {
@@ -72,7 +64,7 @@ const mapDispatchToProps = dispatch => {
 const AppWithStore = connect(
   mapStateToProps,
   mapDispatchToProps
-)(App)
+)(App);
 
 class WrappedApp extends Component {
   render() {
@@ -82,7 +74,6 @@ class WrappedApp extends Component {
       </Provider>
     );
   }
-
 }
 
 export default WrappedApp;
