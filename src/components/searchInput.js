@@ -1,5 +1,5 @@
 import { Input } from 'antd';
-import { debounce } from "lodash.debounce";
+import debounce from "lodash.debounce";
 import PropTypes from "prop-types";
 import React, { PureComponent } from 'react';
 
@@ -8,7 +8,7 @@ class SearchInput extends PureComponent {
   constructor(props) {
       super(props);
 
-      this.onSearch = this.onSearch.bind(this);
+      this.onSearch = debounce(this.onSearch.bind(this), 300);
   }
 
   render() {
@@ -16,7 +16,7 @@ class SearchInput extends PureComponent {
       <Input
         id='input-search'
         placeholder="Search your favourite artists"
-        onSearch={this.onSearch}
+        onChange={this.onSearch}
       />
     );
   }
