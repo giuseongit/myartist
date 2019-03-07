@@ -35,7 +35,7 @@ class BaseList extends PureComponent {
   }
 
   isFav(item) {
-    return this.props.favs.filter((fav) => fav.id === item.id).lenth === 1;
+    return this.props.favs.filter((fav) => fav.id === item.id).length === 1;
   }
 
 }

@@ -87,8 +87,10 @@ export const handleArtist = (dispatch, action, artist) => {
   switch(action){
     case 'add':
       dispatch(saveToFav(artist));
+      break;
     case 'remove':
       dispatch(deleteFromFav(artist));
+      break;
     default:
       return;
   }
