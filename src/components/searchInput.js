@@ -13,7 +13,8 @@ class SearchInput extends PureComponent {
 
   render() {
     return (
-      <Input.Search
+      <Input
+        id='input-search'
         placeholder="Search your favourite artists"
         onSearch={this.onSearch}
       />

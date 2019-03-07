@@ -4,6 +4,53 @@ body {
   background: #222121
 }
 
-#root {
-  background: #616161
+.myartist-menu {
+  line-height: 64px;
+  text-align: center;
+}
+
+#input-search,
+.ant-layout {
+  color: #FFFFFF;
+  background: #222121;
+}
+
+.ant-input:hover,
+.ant-input:focus {
+  border-color: #1DB954;
+}
+
+.myartist-menu li{
+  color: #fff;
+}
+
+.ant-typography a,
+.ant-typography a:active,
+.ant-typography a:hover {
+  color: #1DB954;
+}
+
+.ant-btn-primary,
+.ant-spin-dot i,
+.ant-btn-primary:hover {
+  border-color: #1DB954;
+  background-color: #1DB954;
+}
+
+.myartist-menu li.ant-menu-item-selected,
+.myartist-menu li.ant-menu-item-active {
+  border-bottom: 2px solid #1DB954;
+  color: #1DB954;
+}
+
+.myartist-menu li.ant-menu-item:hover {
+  border-bottom: 2px solid #1DB9B9;
+  color: #1DB9B9;
+}
+
+.ant-empty-description,
+.ant-list-item-meta-title,
+.ant-list-item-meta-description,
+.myartist-action-icon {
+  color: #fff;
 }

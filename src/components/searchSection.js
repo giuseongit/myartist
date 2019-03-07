@@ -9,11 +9,12 @@ import SearchInput from "./searchInput";
 class SearchSection extends PureComponent {
 
   render() {
+    const style = this.props.results.length > 0 ? {} : {display: 'none'}
 
     return (
       <div>
         <Row>
-          <Col>
+          <Col sm={{offset: 6, span: 12}} xs={{offset: 2, span: 20}}>
             <SearchInput
               onSearch={this.props.onSearch}
               token={this.props.token}
@@ -21,7 +22,7 @@ class SearchSection extends PureComponent {
           </Col>
         </Row>
         <Row>
-          <Col>
+          <Col style={style} sm={{offset: 7, span: 10}} xs={{offset: 2, span: 20}}>
             <BaseList
               favs={this.props.favs}
               onSelect={this.props.onSelect}

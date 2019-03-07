@@ -66,7 +66,6 @@ export const searchForOauthInfos = (dispatch) => {
   const error = thisUrl.searchParams.get("error");
   if (token !== null) {
     dispatch(tokenDetected(token[1]));
-
     spotifyMe(token[1])
     .then(data => {
       const { display_name, id } = data;

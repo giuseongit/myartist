@@ -12,7 +12,7 @@ class FavsSection extends PureComponent {
     return (
       <div>
         <Row>
-          <Col>
+          <Col sm={{offset: 7, span: 10}} xs={{offset: 2, span: 20}}>
             <BaseList
               favs={this.props.favs}
               onSelect={this.props.onSelect}

@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Menu, Row, Col, Typography, Spin, Alert, Layout, Tabs } from 'antd';
+import { Menu, Typography, Layout, Tabs } from 'antd';
 import FavsContainer from "../containers/favsContainer";
 import SearchContainer from "../containers/searchContainer";
-const { Title, Text } = Typography;
-const { Header, Content, Sider } = Layout;
+const { Header, Content } = Layout;
 const TabPane = Tabs.TabPane;
 
 
 const renderTabBar = (props, DefaultTabBar) => <div/>;
 
-class Dashboard extends Component{
+class Dashboard extends PureComponent{
   constructor(props){
     super(props);
 
@@ -29,24 +28,24 @@ class Dashboard extends Component{
     const { activetab, name } = this.state;
     return (
       <Layout>
-        <Header>
+        <Header style={{backgroundColor: '#222121'}}>
           <Menu
-            theme="dark"
+            theme="light"
             mode="horizontal"
             defaultSelectedKeys={[ activetab ]}
             style={{ lineHeight: '64px' }}
             onSelect={ this.menuClick }
           >
-            <Menu.Item key="1">nav 1</Menu.Item>
-            <Menu.Item key="2">nav 2</Menu.Item>
+            <Menu.Item key="1">Search</Menu.Item>
+            <Menu.Item key="2">My List</Menu.Item>
           </Menu>
         </Header>
-        <Content style={{ padding: '50px 50px' }}>
+        <Content style={{paddingTop: '5vw'}}>
           <Tabs activeKey={ activetab } renderTabBar={renderTabBar}>
-            <TabPane tab="Tab 1" key="1">
+            <TabPane key="1">
               <SearchContainer />
             </TabPane>
-            <TabPane tab="Tab 2" key="2">
+            <TabPane key="2">
               <FavsContainer />
             </TabPane>
           </Tabs>

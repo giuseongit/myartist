@@ -11,13 +11,24 @@ class BaseList extends PureComponent {
   }
 
   render() {
-
-    return (
+    const list = (
       <List
         itemLayout="horizontal"
         dataSource={this.props.list}
         renderItem={this.renderItem}
       />
+    );
+
+    const content = true? list: <div />;
+
+    return (
+      <div>
+        <Row>
+          <Col>
+            { content }
+          </Col>
+        </Row>
+      </div>
     );
 
   }

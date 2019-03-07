@@ -36,7 +36,12 @@ class ListRow extends PureComponent {
     }
 
     return (
-      <Icon type="minus-circle" onClick={this.removeFromFavourites} />
+      <Icon
+        style={{fontSize: 16}}
+        className="myartist-action-icon"
+        onClick={callback}
+        type={iconType}
+      />
     )
   }
 
